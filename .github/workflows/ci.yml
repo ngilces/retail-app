@@ -4,6 +4,8 @@ name: Pipeline de Calidad Retail App
 on:
   push:
     branches: [ "main" ]
+    pull_request:        # <-- AGREGAR ESTA LÍNEA
+    branches: [ "main" ]
 
 # Conjunto de tareas
 jobs:
@@ -26,3 +28,9 @@ jobs:
           echo "Ejecutando tests de la carpeta tests/..."
           echo "✅ logic.test.js - PASSED"
           echo "✅ html.test.js - PASSED"
+
+      - name: Probar Secret
+        run: |
+          echo "Probando acceso al secreto..."
+          echo "El secreto es: ${{ secrets.API_KEY_RETAIL }}"
+          echo "✅ Si ves *** arriba, el secreto está protegido."
