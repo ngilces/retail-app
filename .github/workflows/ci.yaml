@@ -1,14 +1,15 @@
+name: Pipeline de Calidad Retail App
+
 on:
   push:
     branches: [ "main" ]
-    pull_request:        # <-- AGREGAR ESTA LÍNEA
+  pull_request:
     branches: [ "main" ]
-# Conjunto de tareas
+
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest  # Runner aislado en la nube
+    runs-on: ubuntu-latest
 
-    # Acciones secuenciales
     steps:
       - name: Clonar el repositorio
         uses: actions/checkout@v3
@@ -24,7 +25,7 @@ jobs:
           echo "Ejecutando tests de la carpeta tests/..."
           echo "✅ logic.test.js - PASSED"
           echo "✅ html.test.js - PASSED"
-          
+
       - name: Probar Secret
         run: |
           echo "Probando acceso al secreto..."
